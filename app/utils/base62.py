@@ -1,5 +1,5 @@
 import string
-from typing import Final, ClassVar
+from typing import Final
 
 
 class Base62:
@@ -7,7 +7,7 @@ class Base62:
     BASE_LEN: Final[int] = len(BASE)
 
     @classmethod
-    def encode(cls, num:int) -> str:
+    def encode(cls, num: int) -> str:
         if num < 0:
             raise ValueError(f"{cls}.encode() needs positive integer but you passed: {num}")
 
