@@ -11,6 +11,6 @@ class MeetingModel(BaseModel, Model):
     class Meta:
         table = "meetings"
 
-        @classmethod
-        async def create_meeting(cls, url_code: str) -> MeetingModel:
-            return await cls.create(url_code=url_code)
+    @classmethod
+    async def create_meeting(cls, url_code: str) -> MeetingModel:
+        return await cls.create(url_code=url_code)
