@@ -38,9 +38,11 @@ async def api_get_meeting_mysql(meeting_url_code: str) -> GetMeetingResponse:
     meeting = await service_get_meeting_mysql(meeting_url_code)
     if meeting is None:
         raise HTTPException(
-            status_code=HTTP_404_NOT_FOUND, detail=f"meeting with url_code: {meeting_url_code} not found"
+            status_code=HTTP_404_NOT_FOUND,
+            detail=f"meeting with url_code: {meeting_url_code} not found",
         )
     return GetMeetingResponse(
+        participants=[],
         url_code=meeting.url_code,
         end_date=meeting.end_date,
         start_date=meeting.start_date,
@@ -75,6 +77,7 @@ async def api_update_meeting_date_range_mysql(
     )
     assert meeting_after_update  # meeting 삭제 기능은 없으므로 meeting_after_update 는 무조건 있습니다.
     return GetMeetingResponse(
+        participants=[],
         url_code=meeting_after_update.url_code,
         start_date=meeting_after_update.start_date,
         end_date=meeting_after_update.end_date,
